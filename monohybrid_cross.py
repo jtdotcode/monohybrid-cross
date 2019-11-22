@@ -2,12 +2,39 @@ import itertools
 
 recessive_homozygous = {
   "percent": 0,
-  "gene": "",
-  "name": "" 
+  "alleles": "",
+  "name": "Recessive Homozygous",
+  "count": 0
+}
+
+recessive_heterozygous = {
+  "percent": 0,
+  "alleles": "Recessive Heterozygous",
+  "name": "",
+  "count": 0 
+}
+
+dominant_homozygous = {
+  "percent": 0,
+  "alleles": "",
+  "name": "Dominant Homozygous",
+  "count": 0 
 }
 
 
-phenotype = { 'Recessive Homozygous':0, 'Recessive Heterozygous':0, "Dominant Homozygous":0, "Dominant Heterozygous":0  } 
+dominant_heterozygous = {
+  "percent": 0,
+  "alleles": "",
+  "name": "Dominant Heterozygous",
+  "count": 0
+}
+
+
+
+
+#phenotype = { 'Recessive Homozygous':0, 'Recessive Heterozygous':0, "Dominant Homozygous":0, "Dominant Heterozygous":0  } 
+
+phenotype = [ recessive_homozygous, recessive_heterozygous, dominant_homozygous, dominant_heterozygous  ]
 
 def getInput(prompt_text):
         prompt_input = input(prompt_text + " ")
@@ -19,6 +46,7 @@ def split(string):
 
 
 def zygous_type(child):
+    alleles = ""
     # check if alleles are homozygous
     # convert to lower case for letter match
     if all(x == child[0] for x in child):
@@ -27,7 +55,7 @@ def zygous_type(child):
      # check if alleles are dominant homozygous
      if(any(p.isupper() for p in child)):
              print("Dominant homozygous")
-
+             
              s = 3
     else:
         # else alleles are heterozygous
@@ -46,8 +74,15 @@ def zygous_type(child):
         4: "Dominant Heterozygous"
     }
     p_type = switcher.get(s, "Invalid argument")
-    phenotype[p_type] += 1
-
+    #phenotype[p_type] += 1
+    for item in phenotype:
+     if (item["name"] == p_type):
+         item["count"] += 1
+         item["alleles"] = alleles
+         item["percent"] = 100 / (len(phenotype) / item["count"]) 
+ 
+    
+    
 
 def punnett_squares(parent_1, parent_2):
     
