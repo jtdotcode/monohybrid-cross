@@ -29,12 +29,21 @@ dominant_heterozygous = {
   "count": 0
 }
 
+parent1_characteristics = {
+ "parent_characteristics1": "",
+ "allele": ""
+}
 
+parent2_characteristics = {
+ "parent_characteristics2": "",
+ "allele": ""
+}
 
-
-#phenotype = { 'Recessive Homozygous':0, 'Recessive Heterozygous':0, "Dominant Homozygous":0, "Dominant Heterozygous":0  } 
+parents_characteristics = [ parent1_characteristics, parent2_characteristics ] 
 
 phenotype = [ recessive_homozygous, recessive_heterozygous, dominant_homozygous, dominant_heterozygous  ]
+
+
 
 def getInput(prompt_text):
         prompt_input = input(prompt_text + " ")
@@ -111,7 +120,6 @@ def punnett_squares(parent_1, parent_2):
     print(child)
     
 
-
     
     
 
@@ -131,9 +139,14 @@ def get_input():
    input_correct = False
    get_input()
   else:
+   parent1_c = getInput("What is parent 1 " + parent1 + " Characteristic:")
+   for item in parents_characteristics:
+     if (item.keys == "parent_characteristics1"):
+         item["parent_characteristics1"] = parent1_c
+         item["allele"] = parent1
    input_correct = True
-
-  parent1_characteristics = getInput("What is parent 1 " + parent1 + " Characteristic:")
+  
+  
   
   
   parent2 = getInput("What is Parent 2 Allele: ")
@@ -147,12 +160,18 @@ def get_input():
    input_correct = False
    get_input()
   else:
+   parent2_c = getInput("What is parent 2 " + parent2 + " Characteristic:")
+   for item in parents_characteristics:
+     if (item.keys == "parent_characteristics2"):
+         item["parent_characteristics2"] = parent2_c
+         item["allele"] = parent2
    input_correct = True
   
-  parent2_characteristics = getInput("What is parent 2 " + parent2 + " Characteristic:")
+  
+  
   
 
-  parents_traits = { parent1:parent1_characteristics, parent2: parent2_characteristics}
+
 
   
  print(parent1)
@@ -162,15 +181,26 @@ def get_input():
 
  
  display_child(phenotype)
+
+
+
+ 
  
 
 def display_child(phenotype):
 
  print(phenotype)
+
+ print(parents_characteristics)
+
+
+
+
+
+get_input()
  
 
 
   
 
 
-get_input()
