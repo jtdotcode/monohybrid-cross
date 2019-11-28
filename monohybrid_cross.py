@@ -46,12 +46,13 @@ def split(string):
 
 
 def zygous_type(child):
-    alleles = ""
+    alleles = ''.join(child)
     # check if alleles are homozygous
     # convert to lower case for letter match
     if all(x == child[0] for x in child):
      print("All elements in list are equal")
      s = 1
+
      # check if alleles are dominant homozygous
      if(any(p.isupper() for p in child)):
              print("Dominant homozygous")
@@ -79,7 +80,9 @@ def zygous_type(child):
      if (item["name"] == p_type):
          item["count"] += 1
          item["alleles"] = alleles
-         item["percent"] = 100 / (len(phenotype) / item["count"]) 
+         item["percent"] = 100 / (len(phenotype) / item["count"])
+    
+    alleles = ''  
  
     
     
@@ -112,20 +115,62 @@ def punnett_squares(parent_1, parent_2):
     
     
 
+def get_input():
 
-    
+ input_correct = False
+
+ while(input_correct == False):
+  
+  parent1 = getInput("What is Parent 1 Allele: ")
+  if(len(parent1) != 2):
+   print("Input length incorrect Please enter it again")
+   get_input()
+
+  elif(any(char.isdigit() for char in parent1)):
+   print("Input cant contain spaces or numbers please try again")
+   input_correct = False
+   get_input()
+  else:
+   input_correct = True
+
+  parent1_characteristics = getInput("What is parent 1 " + parent1 + " Characteristic:")
+  
+  
+  parent2 = getInput("What is Parent 2 Allele: ")
+
+  if(len(parent2) != 2):
+   print("Input length incorrect Please enter it again")
+   get_input()
+
+  elif(any(char.isdigit() for char in parent2)):
+   print("Input cant contain spaces or numbers please try again")
+   input_correct = False
+   get_input()
+  else:
+   input_correct = True
+  
+  parent2_characteristics = getInput("What is parent 2 " + parent2 + " Characteristic:")
+  
+
+  parents_traits = { parent1:parent1_characteristics, parent2: parent2_characteristics}
+
+  
+ print(parent1)
+ print(parent2)
+
+ punnett_squares(parent1, parent2)
+
+ 
+ display_child(phenotype)
+ 
+
+def display_child(phenotype):
+
+ print(phenotype)
+ 
 
 
+  
 
 
-
-
-parent1 = getInput("Parent 1 Allele: ")
-parent2 = getInput("Parent 2 Allele: ")
-
-print(parent1)
-print(parent2)
-
-punnett_squares(parent1, parent2)
-
-print(phenotype)
+get_input()
