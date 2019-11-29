@@ -39,7 +39,7 @@ parent2_characteristics = {
  "allele": ""
 }
 
-parents_characteristics = [ parent1_characteristics, parent2_characteristics ] 
+#parents_characteristics = [ parent1_characteristics, parent2_characteristics ] 
 
 phenotype = [ recessive_homozygous, recessive_heterozygous, dominant_homozygous, dominant_heterozygous  ]
 
@@ -113,7 +113,7 @@ def punnett_squares(parent_1, parent_2):
     child.remove(p2)
         
     for c in child:
-     print(c)
+     #print(c)
      zygous_type(c)
               
 
@@ -140,10 +140,8 @@ def get_input():
    get_input()
   else:
    parent1_c = getInput("What is parent 1 " + parent1 + " Characteristic:")
-   for item in parents_characteristics:
-     if (item.keys == "parent_characteristics1"):
-         item["parent_characteristics1"] = parent1_c
-         item["allele"] = parent1
+   parent1_characteristics.update( parent_characteristics1 = parent1_c )
+   parent1_characteristics.update( allele = parent1 )
    input_correct = True
   
   
@@ -161,10 +159,8 @@ def get_input():
    get_input()
   else:
    parent2_c = getInput("What is parent 2 " + parent2 + " Characteristic:")
-   for item in parents_characteristics:
-     if (item.keys == "parent_characteristics2"):
-         item["parent_characteristics2"] = parent2_c
-         item["allele"] = parent2
+   parent2_characteristics.update( parent_characteristics2 = parent2_c )
+   parent2_characteristics.update( allele = parent2 )
    input_correct = True
   
   
@@ -174,8 +170,8 @@ def get_input():
 
 
   
- print(parent1)
- print(parent2)
+ #print(parent1)
+ #print(parent2)
 
  punnett_squares(parent1, parent2)
 
@@ -189,10 +185,17 @@ def get_input():
 
 def display_child(phenotype):
 
- print(phenotype)
+ #print(phenotype)
 
- print(parents_characteristics)
+ for p in phenotype:
+  if(p['count'] != 0):
+     print(p['alleles'], " is ", p['name'], "with a ", p['percent'], " percent chance ", )
+     print('\n')
 
+   
+
+ #print(parent1_characteristics)
+ #print(parent2_characteristics)
 
 
 
