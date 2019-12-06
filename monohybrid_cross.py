@@ -1,4 +1,5 @@
 import itertools
+from random import randrange
 
 recessive_homozygous = {
   "percent": 0,
@@ -39,14 +40,14 @@ parent2_characteristics = {
  "allele": ""
 }
 
-
+off_spring = 100
 
 # list array of phenotypes 
 phenotype = [ recessive_homozygous, recessive_heterozygous, dominant_homozygous, dominant_heterozygous  ]
 
 
 # get input from command line and return a string
-def getInput(prompt_text):
+def get_prompt_input(prompt_text):
         prompt_input = input(prompt_text + " ")
         return prompt_input 
 
@@ -144,7 +145,7 @@ def get_input():
  while(input_correct == False):
   
   # get command line input
-  parent1 = getInput("What is Parent 1 Allele: ")
+  parent1 = get_prompt_input("What is Parent 1 Allele: ")
   
   # check if the command line input is equal to two characters 
   if(len(parent1) != 2):
@@ -156,15 +157,12 @@ def get_input():
    input_correct = False
    get_input()
   else:
-   parent1_c = getInput("What is parent 1 " + parent1 + " Characteristic:")
-   parent1_characteristics.update( parent_characteristics1 = parent1_c )
-   parent1_characteristics.update( allele = parent1 )
    input_correct = True
   
   
   
    # get command line input
-  parent2 = getInput("What is Parent 2 Allele: ")
+  parent2 = get_prompt_input("What is Parent 2 Allele: ")
   
   # check if the command line input is equal to two characters
   if(len(parent2) != 2):
@@ -177,10 +175,8 @@ def get_input():
    input_correct = False
    get_input()
   else:
-   parent2_c = getInput("What is parent 2 " + parent2 + " Characteristic:")
-   parent2_characteristics.update( parent_characteristics2 = parent2_c )
-   parent2_characteristics.update( allele = parent2 )
    input_correct = True
+   off_spring = get_prompt_input("How many offspring: ")
   
 
  punnett_squares(parent1, parent2)
@@ -195,6 +191,8 @@ def get_input():
 
 def display_child(phenotype):
 
+ alleles_list = []
+ off_spring_dict = {}
 
 
  for p in phenotype:
@@ -202,6 +200,22 @@ def display_child(phenotype):
   if(p['count'] != 0):
      print(p['alleles'], " is ", p['name'], "with a ", p['percent'], " percent chance ", )
      print('\n')
+     alleles_list.append(p['alleles'])
+     
+
+ for x in range(0, off_spring):
+  i = randrange(len(alleles_list))
+
+  if(off_spring_dict is not None):
+   
+  else:
+   off_spring_dict.update({ alleles_list[i] : 1 })
+
+  
+
+
+     
+
 
    
 
