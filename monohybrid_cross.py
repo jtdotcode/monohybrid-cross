@@ -176,7 +176,7 @@ def get_input():
    get_input()
   else:
    input_correct = True
-   off_spring = get_prompt_input("How many offspring: ")
+   #off_spring = get_prompt_input("How many offspring: ")
   
 
  punnett_squares(parent1, parent2)
@@ -206,10 +206,20 @@ def display_child(phenotype):
  for x in range(0, off_spring):
   i = randrange(len(alleles_list))
 
-  if(off_spring_dict is not None):
-   
+  #len(off_spring_dict) != 0 or 
+
+  if(any(o == alleles_list[i] for o in off_spring_dict)):
+   off_spring_dict[alleles_list[i]] += 1
   else:
    off_spring_dict.update({ alleles_list[i] : 1 })
+
+ print("out of a random selection of ",off_spring, "off spring")
+
+ for x in range(0,len(off_spring_dict)):
+  key = list(off_spring_dict)[x]
+  val = list(off_spring_dict.values())[x]
+  print('\n')
+  print(key, " alleles ", "would be ", val)
 
   
 
