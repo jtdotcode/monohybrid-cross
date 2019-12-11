@@ -40,7 +40,7 @@ parent2_characteristics = {
  "allele": ""
 }
 
-off_spring = 100
+off_spring_amount = 0   
 
 # list array of phenotypes 
 phenotype = [ recessive_homozygous, recessive_heterozygous, dominant_homozygous, dominant_heterozygous  ]
@@ -135,7 +135,7 @@ def punnett_squares(parent_1, parent_2):
     print(child)
     
 
-    
+
     
 
 def get_input():
@@ -176,8 +176,14 @@ def get_input():
    get_input()
   else:
    input_correct = True
-   #off_spring = get_prompt_input("How many offspring: ")
-  
+   global off_spring_amount 
+   
+   try:
+    off_spring_amount = int(get_prompt_input("How many offspring: "))
+
+   except:
+    print("Input must be a interger only")
+    get_input()
 
  punnett_squares(parent1, parent2)
 
@@ -203,17 +209,16 @@ def display_child(phenotype):
      alleles_list.append(p['alleles'])
      
 
- for x in range(0, off_spring):
+ for x in range(0, off_spring_amount):
   i = randrange(len(alleles_list))
 
-  #len(off_spring_dict) != 0 or 
 
   if(any(o == alleles_list[i] for o in off_spring_dict)):
    off_spring_dict[alleles_list[i]] += 1
   else:
    off_spring_dict.update({ alleles_list[i] : 1 })
 
- print("out of a random selection of ",off_spring, "off spring")
+ print("out of a random selection of ",off_spring_amount, "off spring")
 
  for x in range(0,len(off_spring_dict)):
   key = list(off_spring_dict)[x]
