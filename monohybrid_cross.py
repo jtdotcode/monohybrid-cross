@@ -1,6 +1,6 @@
 """ Punnet Square generator with Offsping output, this script with take to parents genotypes
     and output the percentage chance of allele expresson. 
-    Copyright (C) 2019  John Thompson
+    Copyleft (Copyleft) 2019  John Thompson
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,16 +46,6 @@ dominant_heterozygous = {
   "name": "Dominant Heterozygous",
   "count": 0
 }
-
-# parent1_characteristics = {
-#  "parent_characteristics1": "",
-#  "allele": ""
-# }
-
-# parent2_characteristics = {
-#  "parent_characteristics2": "",
-#  "allele": ""
-# }
 
 off_spring_amount = 0   
 
