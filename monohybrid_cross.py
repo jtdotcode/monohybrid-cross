@@ -1,3 +1,20 @@
+""" Punnet Square generator with Offsping output, this script with take to parents genotypes
+    and output the percentage chance of allele expresson. 
+    Copyright (C) 2019  John Thompson
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>. """
+
 import itertools
 from random import randrange
 
@@ -30,15 +47,15 @@ dominant_heterozygous = {
   "count": 0
 }
 
-parent1_characteristics = {
- "parent_characteristics1": "",
- "allele": ""
-}
+# parent1_characteristics = {
+#  "parent_characteristics1": "",
+#  "allele": ""
+# }
 
-parent2_characteristics = {
- "parent_characteristics2": "",
- "allele": ""
-}
+# parent2_characteristics = {
+#  "parent_characteristics2": "",
+#  "allele": ""
+# }
 
 off_spring_amount = 0   
 
@@ -52,7 +69,7 @@ def get_prompt_input(prompt_text):
         return prompt_input 
 
 
-# break the into a each character and return a tuple for each allele
+# break the into a each character and return a tuple for each genotype
 def split(string):
     return tuple([char for char in string])
 
@@ -145,7 +162,7 @@ def get_input():
  while(input_correct == False):
   
   # get command line input
-  parent1 = get_prompt_input("What is Parent 1 Allele: ")
+  parent1 = get_prompt_input("What is Parent 1 genotype: ")
   
   # check if the command line input is equal to two characters 
   if(len(parent1) != 2):
@@ -162,7 +179,7 @@ def get_input():
   
   
    # get command line input
-  parent2 = get_prompt_input("What is Parent 2 Allele: ")
+  parent2 = get_prompt_input("What is Parent 2 genotype: ")
   
   # check if the command line input is equal to two characters
   if(len(parent2) != 2):
@@ -197,10 +214,13 @@ def get_input():
 
 def display_child(phenotype):
 
+ # create blank array list
  alleles_list = []
+
+ # create black dictionary 
  off_spring_dict = {}
 
-
+ # iterate the phenotype list array of dictionary's
  for p in phenotype:
    # if no count has been added to phenotype list of dictionary's skip printing empty dictionary  
   if(p['count'] != 0):
@@ -208,11 +228,11 @@ def display_child(phenotype):
      print('\n')
      alleles_list.append(p['alleles'])
      
-
+ # iterate for total amount off spring input and randomly choose the a genotype from the alleles list 
  for x in range(0, off_spring_amount):
   i = randrange(len(alleles_list))
 
-
+ # check if the off_spring_dict contains the genotype and add to the count or create a new entry
   if(any(o == alleles_list[i] for o in off_spring_dict)):
    off_spring_dict[alleles_list[i]] += 1
   else:
@@ -220,19 +240,13 @@ def display_child(phenotype):
 
  print("out of a random selection of ",off_spring_amount, "off spring")
 
+ # print out the contents of the off_spring_dict
  for x in range(0,len(off_spring_dict)):
   key = list(off_spring_dict)[x]
   val = list(off_spring_dict.values())[x]
   print('\n')
   print(key, " alleles ", "would be ", val)
 
-  
-
-
-     
-
-
-   
 
 
 
